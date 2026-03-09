@@ -1,0 +1,29 @@
+.logoBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    text-decoration: none;
+}
+
+.logoText {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+    color: #1d1e21;
+}
+
+.homeText {
+    color: #fff;
+}
+
+@media screen and (min-width:768px) {
+    .logoText {
+        font-size: 20px;
+    }
+
+    .img {
+        width: 44px;
+        height: 44px;
+    }
+}

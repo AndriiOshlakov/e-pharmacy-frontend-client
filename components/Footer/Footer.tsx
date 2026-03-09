@@ -1,18 +1,14 @@
+import Container from "../Container/Container";
 import css from "./Footer.module.css";
 
 const Footer = () => {
   return (
     <footer className={css.footer}>
-      <div className={css.content}>
-        <p>© {new Date().getFullYear()} NoteHub. All rights reserved.</p>
-        <div className={css.wrap}>
-          <p>Developer: Andrii Oshlakov</p>
-          <p>
-            Contact us:
-            <a href="mailto:student@notehub.app">student@notehub.app</a>
-          </p>
+      <Container>
+        <div className={css.content}>
+          <h1>Footer</h1>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

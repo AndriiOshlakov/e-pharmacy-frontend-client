@@ -1,26 +1,27 @@
 import AuthNavigation from "../AuthNavigation/AuthNavigation";
-// import TagsMenu from "../TagsMenu/TagsMenu";
+import BurgerComponent from "../BurgerComponent/BurgerComponent";
+import HeaderNavigation from "../HeaderNavigation/HeaderNavigation";
+import HeaderWrapper from "../HeaderWrapper/HeaderWrapper";
+import LogoComponent from "../Image/Image";
+
 import css from "./Header.module.css";
-import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className={css.header}>
-      <Link href="/" aria-label="Home">
-        NoteHub
-      </Link>
-      <nav aria-label="Main Navigation">
-        <ul className={css.navigation}>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          {/* <li>
-            <TagsMenu />
-          </li> */}
+    <HeaderWrapper>
+      <header className={css.header}>
+        <LogoComponent />
+        <nav className={css.navContainer}>
+          <HeaderNavigation />
+        </nav>
+        <div className={css.burgerBox}>
+          <BurgerComponent />
+        </div>
+        <div className={css.authBox}>
           <AuthNavigation />
-        </ul>
-      </nav>
-    </header>
+        </div>
+      </header>
+    </HeaderWrapper>
   );
 };
 

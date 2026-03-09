@@ -11,7 +11,7 @@ export async function POST() {
     const accessToken = cookieStore.get("accessToken")?.value;
     const refreshToken = cookieStore.get("refreshToken")?.value;
 
-    await api.post("auth/logout", null, {
+    await api.post("/user/logout", null, {
       headers: {
         Cookie: `accessToken=${accessToken}; refreshToken=${refreshToken}`,
       },
@@ -22,20 +22,20 @@ export async function POST() {
 
     return NextResponse.json(
       { message: "Logged out successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
-        { status: error.status }
+        { status: error.status },
       );
     }
     logErrorResponse({ message: (error as Error).message });
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

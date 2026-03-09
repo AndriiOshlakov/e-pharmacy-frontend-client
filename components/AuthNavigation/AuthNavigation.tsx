@@ -3,52 +3,46 @@
 import Link from "next/link";
 import css from "./AuthNavigation.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
-import TagsMenu from "../TagsMenu/TagsMenu";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { logout } from "@/lib/api/clientApi";
 
 export default function AuthNavigation() {
   const router = useRouter();
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const clearIsAuthenticated = useAuthStore(
-    (state) => state.clearIsAuthenticated
+    (state) => state.clearIsAuthenticated,
   );
+  const pathName = usePathname();
 
   const handleLogout = async () => {
     await logout();
     clearIsAuthenticated();
-    router.push("/sign-in");
+    router.push("/login");
   };
 
   return isAuthenticated ? (
     <>
-      <li className={css.navigationItem}>
-        <Link href="/profile" prefetch={false} className={css.navigationLink}>
-          Profile
-        </Link>
-      </li>
-      <li className={css.navigationItem}>
-        <TagsMenu />
-      </li>
-      <li className={css.navigationItem}>
-        <p className={css.userEmail}>{user?.email}</p>
-        <button className={css.logoutButton} onClick={handleLogout}>
-          Logout
-        </button>
-      </li>
+      <button className={css.logoutButton} onClick={handleLogout}>
+        Logout
+      </button>
     </>
   ) : (
-    <>
-      <li className={css.navigationItem}>
-        <Link href="/sign-in" prefetch={false} className={css.navigationLink}>
-          Login
-        </Link>
-      </li>
-      <li className={css.navigationItem}>
-        <Link href="/sign-up" prefetch={false} className={css.navigationLink}>
-          Sign up
-        </Link>
-      </li>
-    </>
+    <div className={css.authBox}>
+      <Link
+        href="/register"
+        prefetch={false}
+        className={`${css.register} ${pathName === "/" ? css.registerHome : ""}`}
+      >
+        Register
+      </Link>
+
+      <Link
+        href="/login"
+        prefetch={false}
+        className={`${css.login} ${pathName === "/" ? css.loginHome : ""}`}
+      >
+        Login
+      </Link>
+    </div>
   );
 }

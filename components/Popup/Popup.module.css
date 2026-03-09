@@ -1,0 +1,46 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(29, 30, 33, 0.45);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 999;
+}
+
+.modal {
+    width: 210px;
+    height: 100vh;
+    background-color: #59b17a;
+    transform: translateX(100%);
+    animation: slideIn 0.3s ease forwards;
+    padding-top: 260px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    stroke: #fff;
+}
+
+@media screen and (min-width:768px) {
+    .modal {
+        width: 334px;
+    }
+
+    .closeBtn {
+        top: 40px;
+        right: 32px;
+    }
+}
