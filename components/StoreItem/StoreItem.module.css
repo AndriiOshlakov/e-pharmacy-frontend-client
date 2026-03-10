@@ -1,0 +1,116 @@
+.storeBox {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 32px 40px 32px;
+    border: 1.15px solid #f1f1f1;
+    border-radius: 27px;
+    background-size: cover;
+    background-position: center;
+    background-image: image-set(url("/cardMob1x.png") 1x,
+            url("/cardMob2x.png") 2x);
+}
+
+.subtitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #1d1e21;
+    margin-bottom: 32px;
+}
+
+.box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.textBox {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.28571;
+    color: #93939a;
+}
+
+.icon {
+    stroke: #59b17a;
+    fill: transparent;
+}
+
+.star {
+    fill: #ffc531;
+}
+
+.ratingWrapper {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    height: 34px;
+}
+
+.ratingBox {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.rating {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #1d1e21;
+}
+
+.timeBox {
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 65px;
+    height: 34px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #59b17a;
+    background-color: rgba(89, 177, 122, 0.1);
+}
+
+
+@media screen and (min-width:768px) {
+    .storeBox {
+        width: 344px;
+        height: 262px;
+        padding: 40px 24px 46px 40px;
+        background-image: image-set(url("/cardTab1x.png") 1x,
+                url("/cardTab2x.png") 2x);
+    }
+
+    .subtitle {
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .storeBox {
+        width: 392px;
+        height: 232px;
+        padding-right: 40px;
+        background-image: image-set(url("/cardDesc1x.png") 1x,
+                url("/cardDesc2x.png") 2x);
+    }
+}

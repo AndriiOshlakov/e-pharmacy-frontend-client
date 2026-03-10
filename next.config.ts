@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "ac.goit.global",
+        hostname: "i.imgur.com",
       },
     ],
   },

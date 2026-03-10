@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
 import { nextServer } from "./api";
 import { User } from "@/types/user";
+import { Store } from "@/types/store";
+import { Review } from "@/types/review";
 
 export const getMeServer = async (): Promise<User> => {
   const cookieStore = await cookies();
@@ -20,4 +22,17 @@ export const checkServerSession = async () => {
     },
   });
   return res;
+};
+
+export const getNearestStores = async () => {
+  const res = await nextServer.get<Store[]>("/nearest");
+
+  return res.data;
+};
+
+export const getreviews = async () => {
+  const res = await nextServer.get<Review[]>("/reviews");
+  console.log(res.data);
+
+  return res.data;
 };
