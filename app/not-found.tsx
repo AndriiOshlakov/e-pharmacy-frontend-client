@@ -1,5 +1,5 @@
-import css from "@/app/Home.module.css";
 import { Metadata } from "next";
+import css from "./Home.module.css";
 
 export const metadata: Metadata = {
   title: "404 - Page not found",

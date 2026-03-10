@@ -1,0 +1,87 @@
+.hero {
+    background-color: #59b17a;
+}
+
+.heroBox {
+    height: 755px;
+    padding-top: 197px;
+}
+
+.heroWrapper {
+    padding-top: 19px;
+    padding-bottom: 91px;
+    background-image: image-set(url("/pillsMob1x.png") 1x,
+            url("/pillsMob2x.png") 2x);
+
+    background-size: cover;
+    background-position: center;
+}
+
+.title {
+    width: 293px;
+    margin-right: auto;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 1;
+    color: #fff;
+}
+
+.text {
+    width: 156px;
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.3;
+    color: #fff;
+}
+
+@media screen and (min-width:768px) {
+    .heroBox {
+        height: 952px;
+        padding-top: 186px;
+    }
+
+    .heroWrapper {
+        padding-top: 140px;
+        padding-bottom: 156px;
+        background-image: image-set(url("/pillsTab1x.png") 1x,
+                url("/pillsTab2x.png") 2x);
+    }
+
+    .title {
+        width: 609px;
+        font-size: 74px;
+        line-height: 1;
+        margin-left: 31px;
+        margin-bottom: 24px;
+    }
+
+    .text {
+        width: 207px;
+        margin-right: 83px;
+        font-size: 16px;
+        line-height: 1.25;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .heroBox {
+        height: 726px;
+        padding-top: 72px;
+    }
+
+    .heroWrapper {
+        width: 749px;
+        margin: 0 auto;
+        background-image: image-set(url("/pillsDesc1x.png") 1x,
+                url("/pillsDesc2x.png") 2x);
+    }
+
+    .title {
+        margin-left: 54px;
+    }
+
+    .text {
+        margin-right: 105px;
+    }
+}

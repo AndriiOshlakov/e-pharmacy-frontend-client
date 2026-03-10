@@ -1,11 +1,11 @@
-import css from "@/app/Home.module.css";
-import Container from "@/components/Container/Container";
-
+import Hero from "@/components/Hero/Hero";
+import PromoBanners from "@/components/PromoBanners/PromoBanners";
 const Home = () => {
   return (
-    <Container>
-      <main></main>
-    </Container>
+    <main style={{ backgroundColor: "#f7f8fa" }}>
+      <Hero />
+      <PromoBanners />
+    </main>
   );
 };
 
