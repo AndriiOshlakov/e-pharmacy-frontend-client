@@ -1,5 +1,177 @@
-/* components/Footer.module.css */
-
 .footer {
     background-color: #59b17a;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logoBox {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.logoText {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+    color: #fff;
+}
+
+.text {
+    margin-bottom: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #f7f8fa;
+    width: 261px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 268px;
+    margin-bottom: 80px;
+}
+
+.navLink {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #f7f8fa;
+}
+
+.social {
+    display: none;
+}
+
+.wrapper {
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid rgba(247, 248, 250, 0.3);
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1;
+    color: #f7f8fa;
+}
+
+.middle {
+    display: block;
+    border-right: 1px solid #f7f8fa;
+    border-left: 1px solid #f7f8fa;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+@media screen and (min-width:768px) {
+
+    .footer {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logoText {
+        font-size: 20px;
+    }
+
+    .img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .text {
+        font-size: 16px;
+        line-height: 1.25;
+        margin-bottom: 88px;
+    }
+
+    .box {
+        padding-top: 20px;
+    }
+
+    .nav {
+        margin-bottom: 32px;
+        width: 296px;
+    }
+
+    .navLink {
+        font-size: 16px;
+        line-height: 1.25;
+    }
+
+    .social {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+    }
+
+    .socialLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(247, 248, 250, 0.1);
+        border-radius: 10px;
+        width: 44px;
+        height: 44px;
+        fill: #f7f8fa;
+    }
+
+    .wrapper {
+        padding-top: 33px;
+    }
+
+    .content {
+        font-size: 14px;
+        line-height: 1.3;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .middle {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .footer {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .box {
+        padding-top: 0;
+        display: flex;
+        gap: 270px;
+    }
+
+    .text {
+        margin-bottom: 64px;
+        width: 311px;
+    }
+
+    .nav {
+        margin-bottom: 0;
+        align-items: start;
+        gap: 50px;
+        width: 332px;
+    }
+
+    .wrapper {
+        padding-top: 40px;
+    }
 }

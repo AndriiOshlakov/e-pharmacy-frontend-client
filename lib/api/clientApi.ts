@@ -1,6 +1,7 @@
 import { LoginRequest, RegisterRequest } from "@/types/auth";
 import { nextServer } from "./api";
 import { User } from "@/types/user";
+import { RequestStore, ResponsetStore } from "@/types/store";
 
 export async function register(data: RegisterRequest) {
   const response = await nextServer.post<User>("/auth/register", data);
@@ -27,4 +28,13 @@ export const getMe = async (): Promise<User> => {
 
 export const logout = async (): Promise<void> => {
   await nextServer.post("/auth/logout");
+};
+
+export const getStoresClient = async ({ page, perPage }: RequestStore) => {
+  const res = await nextServer.get<ResponsetStore>("/medicine-store", {
+    params: { page, perPage },
+  });
+  console.log(res.data);
+
+  return res.data;
 };

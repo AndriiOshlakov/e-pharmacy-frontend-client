@@ -1,0 +1,140 @@
+.storeBox {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 32px 40px 32px;
+    border: 1.15px solid #f1f1f1;
+    border-radius: 27px;
+    background-size: cover;
+    background-position: center;
+    background-image: image-set(url("/pharmMob1x.png") 1x,
+            url("/pharmMob2x.png") 2x);
+}
+
+.leftBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.subtitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #1d1e21;
+    margin-bottom: 32px;
+}
+
+.box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.textBox {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.28571;
+    color: #93939a;
+}
+
+.icon {
+    stroke: #59b17a;
+    fill: transparent;
+}
+
+.star {
+    fill: #ffc531;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    width: 102px;
+    height: 34px;
+    background-color: #59b17a;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    color: #fff;
+    margin-top: 24px;
+}
+
+.ratingWrapper {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    height: 34px;
+    margin-top: auto;
+}
+
+.ratingBox {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.rating {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #1d1e21;
+}
+
+.timeBox {
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 65px;
+    height: 34px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #59b17a;
+    background-color: rgba(89, 177, 122, 0.1);
+}
+
+
+@media screen and (min-width:768px) {
+    .storeBox {
+        width: 344px;
+        height: 322px;
+        padding: 40px;
+        background-image: image-set(url("/pharmTab1x.png") 1x,
+                url("/pharmTab2x.png") 2x);
+    }
+
+    .subtitle {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .link {
+        margin-top: auto;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .storeBox {
+        width: 381px;
+        padding-right: 40px;
+        background-image: image-set(url("/pharmDesc1x.png") 1x,
+                url("/pharmDesc2x.png") 2x);
+    }
+}

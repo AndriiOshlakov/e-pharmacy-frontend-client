@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { nextServer } from "./api";
 import { User } from "@/types/user";
-import { Store } from "@/types/store";
+import { RequestStore, ResponsetStore, Store } from "@/types/store";
 import { Review } from "@/types/review";
 
 export const getMeServer = async (): Promise<User> => {
@@ -32,6 +32,13 @@ export const getNearestStores = async () => {
 
 export const getreviews = async () => {
   const res = await nextServer.get<Review[]>("/reviews");
+
+  return res.data;
+};
+export const getStores = async ({ page, perPage }: RequestStore) => {
+  const res = await nextServer.get<ResponsetStore>("/medicine-store", {
+    params: { page, perPage },
+  });
   console.log(res.data);
 
   return res.data;
