@@ -2,6 +2,7 @@ import { LoginRequest, RegisterRequest } from "@/types/auth";
 import { nextServer } from "./api";
 import { User } from "@/types/user";
 import { RequestStore, ResponsetStore } from "@/types/store";
+import { Product, ProductsRequest, ProductsResponse } from "@/types/product";
 
 export async function register(data: RegisterRequest) {
   const response = await nextServer.post<User>("/auth/register", data);
@@ -34,6 +35,26 @@ export const getStoresClient = async ({ page, perPage }: RequestStore) => {
   const res = await nextServer.get<ResponsetStore>("/medicine-store", {
     params: { page, perPage },
   });
+
+  return res.data;
+};
+
+export const getProductsClient = async ({
+  page,
+  perPage,
+  category,
+  search,
+}: ProductsRequest) => {
+  const res = await nextServer.get<ProductsResponse>("/medicine", {
+    params: { page, perPage, category, search },
+  });
+  console.log(res.data);
+
+  return res.data;
+};
+
+export const getSingleProductClient = async (id: string) => {
+  const res = await nextServer.get<Product>(`/medicine/${id}`);
   console.log(res.data);
 
   return res.data;

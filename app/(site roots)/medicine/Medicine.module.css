@@ -1,0 +1,33 @@
+.section {
+    padding-top: 64px;
+    padding-bottom: 80px;
+}
+
+.title {
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.1;
+    color: #1d1e21;
+}
+
+@media screen and (min-width:768px) {
+    .section {
+        padding-top: 80px;
+        padding-bottom: 120px;
+    }
+
+    .title {
+        margin-bottom: 32px;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .section {
+        padding-top: 100px;
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+}

@@ -1,0 +1,268 @@
+.box {
+    padding-top: 64px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.productWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.img {
+    border: 1.15px solid rgba(89, 177, 122, 0.6);
+    border-radius: 27px;
+}
+
+.wrapper {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.container,
+.containerQuan {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #1d1e21;
+}
+
+.quantityBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid rgba(29, 30, 33, 0.1);
+    border-radius: 60px;
+    width: 108px;
+    height: 44px;
+}
+
+.btn {
+    font-size: 20px;
+    color: #59b17a;
+}
+
+.quantity {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #1d1e21;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+    width: 140px;
+    height: 44px;
+    background-color: #59b17a;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #fff;
+}
+
+.descriptionBox {
+    border-radius: 27px;
+    padding: 20px 20px 40px;
+    background-color: #fff;
+}
+
+.btnsBox {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.descr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    padding: 8px 25px;
+    background-color: rgba(89, 177, 122, 0.1);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.05em;
+    color: #59b17a;
+}
+
+.active {
+    background-color: #59b17a;
+    color: #fff;
+}
+
+.textBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.subText {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #6a6a6f;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reviewerBox {
+    display: flex;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 28px;
+    gap: 14px;
+    border: 1px solid #f1f1f1;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.nameBox {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 20px;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #1d1e21;
+}
+
+.date {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(29, 30, 33, 0.6);
+}
+
+.rating {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    width: 32px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.star {
+    fill: #ffc531;
+}
+
+.comment {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #6a6a6f;
+}
+
+.ratingTab {
+    display: none;
+}
+
+@media screen and (min-width:768px) {
+    .box {
+        gap: 16px;
+    }
+
+    .productWrapper {
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .img {
+        width: 364px;
+        height: 284px;
+    }
+
+    .wrapper {
+        width: 324px;
+        padding: 32px;
+        justify-content: space-between;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+    }
+
+    .descriptionBox {
+        padding: 32px 32px 64px;
+    }
+
+    .btnsBox {
+        margin-bottom: 32px;
+    }
+
+    .rating {
+        display: none;
+    }
+
+    .ratingTab {
+        display: flex;
+        gap: 2px;
+        margin-left: auto;
+        height: 18px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .starGrey {
+        fill: #f1f1f1;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .box {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .productWrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .img {
+        width: 364px;
+    }
+
+    .wrapper {
+        width: 364px;
+    }
+
+    .container {
+        flex-direction: row;
+    }
+
+    .descriptionBox {
+        padding: 40px 40px 66px;
+    }
+}

@@ -3,6 +3,7 @@ import { nextServer } from "./api";
 import { User } from "@/types/user";
 import { RequestStore, ResponsetStore, Store } from "@/types/store";
 import { Review } from "@/types/review";
+import { Product, ProductsRequest, ProductsResponse } from "@/types/product";
 
 export const getMeServer = async (): Promise<User> => {
   const cookieStore = await cookies();
@@ -35,10 +36,30 @@ export const getreviews = async () => {
 
   return res.data;
 };
+
 export const getStores = async ({ page, perPage }: RequestStore) => {
   const res = await nextServer.get<ResponsetStore>("/medicine-store", {
     params: { page, perPage },
   });
+
+  return res.data;
+};
+
+export const getProducts = async ({
+  page,
+  perPage,
+  category,
+  search,
+}: ProductsRequest) => {
+  const res = await nextServer.get<ProductsResponse>("/medicine", {
+    params: { page, perPage, category, search },
+  });
+
+  return res.data;
+};
+
+export const getSingleProduct = async (id: string) => {
+  const res = await nextServer.get<Product>(`/medicine/${id}`);
   console.log(res.data);
 
   return res.data;
