@@ -13,6 +13,9 @@ import toast, { Toaster } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormData } from "@/types/user";
+import { AxiosError } from "axios";
+
+type ApiError = AxiosError<{ error: string }>;
 
 export const loginSchema = yup.object({
   email: yup
@@ -56,8 +59,12 @@ export default function SignIn() {
       toast(`${user.name} registered successfuly`);
 
       router.push("/cart");
-    } catch (error: any) {
-      toast(error?.data?.message || "Registration failed");
+    } catch (error) {
+      toast(
+        (error as ApiError).response?.data?.error ??
+          (error as ApiError).message ??
+          "Registration falls",
+      );
     }
   };
   const passwordValue = watch("password");
