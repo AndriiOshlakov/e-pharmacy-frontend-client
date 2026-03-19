@@ -17,7 +17,7 @@ import { AxiosError } from "axios";
 
 type ApiError = AxiosError<{ error: string }>;
 
-export const loginSchema = yup.object({
+const loginSchema = yup.object({
   email: yup
     .string()
     .required("Email is required")
