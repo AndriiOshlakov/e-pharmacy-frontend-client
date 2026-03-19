@@ -15,7 +15,7 @@ import { AxiosError } from "axios";
 
 type ApiError = AxiosError<{ error: string }>;
 
-export const registrationSchema = yup.object({
+const registrationSchema = yup.object({
   name: yup.string().required("Name is required"),
 
   email: yup
