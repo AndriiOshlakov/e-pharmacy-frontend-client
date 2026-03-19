@@ -5,7 +5,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import SingleMedicineClient from "./SingleMedicine.client";
-
+export const dynamic = "force-dynamic";
 interface Props {
   params: Promise<{ id: string }>;
 }

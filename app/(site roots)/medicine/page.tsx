@@ -6,7 +6,7 @@ import {
   HydrationBoundary,
 } from "@tanstack/react-query";
 import MedicineClient from "./Medicine.client";
-
+export const dynamic = "force-dynamic";
 type Props = {
   searchParams: Promise<ProductsRequest>;
 };
