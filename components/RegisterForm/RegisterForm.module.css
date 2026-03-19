@@ -1,0 +1,150 @@
+.box {
+    border-radius: 20px;
+    padding: 40px 32px;
+    width: 343px;
+    background: #fff;
+    position: relative;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    stroke: #1d1e21;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.1;
+    text-align: center;
+    color: #1d1e21;
+    margin-bottom: 14px;
+}
+
+.text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: center;
+    color: #6a6a6f;
+    margin-bottom: 25px;
+    width: 262px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.label {
+    position: relative;
+    width: 100%;
+}
+
+.input {
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    padding: 13px 18px;
+    width: 100%;
+    height: 42px;
+    outline: none;
+}
+
+.input::placeholder {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(29, 30, 33, 0.4);
+}
+
+
+.inputError {
+    border-color: #ef2447;
+}
+
+
+
+.eye {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    stroke: rgba(38, 38, 38, 0.5);
+    fill: #fff;
+}
+
+.eye:hover {
+    cursor: pointer;
+}
+
+.wrapper {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+    height: 44px;
+    width: 100%;
+    background-color: #59b17a;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #fff;
+}
+
+.link {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(29, 30, 33, 0.4);
+}
+
+@media screen and (min-width:768px) {
+    .box {
+        padding: 50px 70px;
+        width: 463px;
+    }
+
+    .closeBtn {
+        top: 20px;
+        right: 20px;
+    }
+
+    .closeBtn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .text {
+        width: 280px;
+        font-size: 16px;
+        line-height: 1.25;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .form {
+        gap: 14px;
+    }
+
+    .btn {
+        padding: 0;
+        margin-top: 11px;
+    }
+
+}
+
+@media screen and (min-width:1440px) {}

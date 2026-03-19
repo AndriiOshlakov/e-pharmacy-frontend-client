@@ -1,11 +1,24 @@
 import { NextResponse } from "next/server";
-import { api } from "../api";
+import { cookies } from "next/headers";
 import { isAxiosError } from "axios";
-import { logErrorResponse } from "../_utils/utils";
+import { api } from "../../api";
+import { logErrorResponse } from "../../_utils/utils";
 
-export async function GET() {
+type Props = {
+  params: Promise<{ productId: string }>;
+};
+
+export async function DELETE(request: Request, { params }: Props) {
   try {
-    const res = await api("/pharmacies/nearest");
+    const cookieStore = await cookies();
+    const { productId } = await params;
+
+    const res = await api.delete(`/cart/${productId}`, {
+      headers: {
+        Cookie: cookieStore.toString(),
+        "Content-Type": "application/json",
+      },
+    });
 
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {

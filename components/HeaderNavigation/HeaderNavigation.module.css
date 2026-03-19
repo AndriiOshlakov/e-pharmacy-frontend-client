@@ -65,7 +65,7 @@
 
     .navListItem:not(:last-child)::after {
         left: 99%;
-        transform: translateY(-100%);
+        transform: translateY(-122%);
         width: 5px;
         height: 15px;
         border-top: 1.15px solid #f1f1f1;

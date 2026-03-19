@@ -21,11 +21,14 @@ export default function AuthNavigation() {
   };
 
   return isAuthenticated ? (
-    <>
-      <button className={css.logoutButton} onClick={handleLogout}>
-        Logout
+    <div className={css.userBox}>
+      <button
+        className={`${css.logoutButton} ${pathName === "/" ? css.logoutHome : ""}`}
+        onClick={handleLogout}
+      >
+        Log out
       </button>
-    </>
+    </div>
   ) : (
     <div className={css.authBox}>
       <Link

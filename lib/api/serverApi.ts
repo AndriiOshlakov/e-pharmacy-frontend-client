@@ -25,6 +25,16 @@ export const checkServerSession = async () => {
   return res;
 };
 
+export async function refreshServerSession() {
+  const cookieStore = await cookies();
+  const response = await nextServer.post("/auth/refresh", {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+  return response;
+}
+
 export const getNearestStores = async () => {
   const res = await nextServer.get<Store[]>("/nearest");
 

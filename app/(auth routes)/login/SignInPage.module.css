@@ -2,67 +2,213 @@
     flex: 1;
 }
 
+.container {
+    padding: 25px 20px 191px;
+    position: relative;
+    margin: 0 auto;
+    width: 375px;
+    background-image: url("/authMob.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.logoBox {
+    width: 137px;
+    margin-bottom: 106px;
+}
+
+.pill {
+    position: absolute;
+    top: 107px;
+    right: 40px;
+}
+
+.pillTab {
+    display: none;
+}
+
+
+
+.formTitle {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.21429;
+    color: #1d1e21;
+    width: 335px;
+    margin-bottom: 20px;
+}
+
+.formTitle span {
+    color: #59b17a;
+}
+
 .form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 24px;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.formTitle {
-    font-size: 24px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 8px;
-    color: #212529;
-}
 
-.formGroup {
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    font-weight: 500;
-    color: #212529;
+.label {
+    position: relative;
+    width: 100%;
 }
 
 .input {
-    margin-top: 4px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    padding: 13px 18px;
+    width: 100%;
+    height: 42px;
+    outline: none;
 }
 
-.actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-}
-
-.submitButton {
-    padding: 8px 16px;
-    font-size: 16px;
-    background-color: #0d6efd;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.submitButton:hover {
-    background-color: #0b5ed7;
-}
-
-.error {
-    color: #dc3545;
+.input::placeholder {
+    font-weight: 400;
     font-size: 12px;
-    margin-top: 4px;
-    text-align: center;
+    line-height: 1.5;
+    color: rgba(29, 30, 33, 0.4);
+}
+
+
+.inputError {
+    border-color: #ef2447;
+}
+
+
+
+.eye {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    stroke: rgba(38, 38, 38, 0.5);
+    fill: #fff;
+}
+
+.eye:hover {
+    cursor: pointer;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+    padding: 13px 139px;
+    width: 100%;
+    background-color: #59b17a;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #fff;
+}
+
+.link {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(29, 30, 33, 0.4);
+    display: block;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width:768px) {
+    .container {
+        padding: 28px 32px 250px;
+        width: 768px;
+        background-image: url("/authTab.png");
+    }
+
+    .logoBox {
+        width: 172px;
+        margin-bottom: 168px;
+    }
+
+    .pill {
+        display: none;
+    }
+
+    .pillTab {
+        display: block;
+        position: absolute;
+        top: 136px;
+        right: 141px;
+    }
+
+    .formTitle {
+        font-size: 54px;
+        line-height: 1.1;
+        margin-bottom: 54px;
+        width: 614px;
+    }
+
+    .form {
+        gap: 14px;
+        margin-bottom: 14px;
+    }
+
+    .label {
+        width: 323px;
+    }
+
+    .btn {
+        width: 323px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        height: 44px;
+        margin-top: 48px;
+    }
+
+    .link {
+        margin-left: 95px;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .container {
+        width: 1440px;
+        padding: 28px 98px 262px 100px;
+        background-image: url("/authDesc.png");
+    }
+
+
+    .logoBox {
+        margin-bottom: 266px;
+    }
+
+    .formTitle {
+        width: 700px;
+        margin-bottom: 0;
+    }
+
+    .pillTab {
+        top: 231px;
+        right: 745px;
+    }
+
+    .wrapper {
+        display: flex;
+        gap: 150px;
+    }
+
+    .form {
+        width: 574px;
+        margin-bottom: 0px;
+        height: 208px;
+    }
+
+    .link {
+        margin-left: 842px;
+        margin-top: -20px;
+    }
+
+    .btn {
+        height: 44px;
+        margin-top: auto;
+    }
 }

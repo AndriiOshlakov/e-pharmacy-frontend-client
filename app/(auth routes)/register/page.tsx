@@ -3,70 +3,170 @@
 import { useRouter } from "next/navigation";
 import css from "./SignUpPage.module.css";
 import { useState } from "react";
-import { RegisterRequest } from "@/types/auth";
-import { register } from "@/lib/api/clientApi";
-import { AxiosError } from "axios";
+import { registerUser } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
+import LogoComponent from "@/components/Image/Image";
+import Image from "next/image";
+import * as yup from "yup";
+import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RegistrationFormData } from "@/types/user";
 
-type ApiError = AxiosError<{ error: string }>;
+export const registrationSchema = yup.object({
+  name: yup.string().required("Name is required"),
+
+  email: yup
+    .string()
+    .required("Email is required")
+    .matches(
+      /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+      "Enter a valid Email",
+    ),
+  phone: yup
+    .string()
+    .required("Phone is required")
+    .matches(/^\+38\d{10}$/, "Invalid phone,it should start +380..."),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(7, "Password must be at least 7 characters"),
+});
 
 export default function SignUp() {
   const router = useRouter();
-  const [error, setError] = useState("");
-  const setUser = useAuthStore((state) => state.setUser);
-  const handleSubmit = async (formData: FormData) => {
-    try {
-      const formValues = Object.fromEntries(formData) as RegisterRequest;
-      const res = await register(formValues);
+  const [isPassword, setIsPassword] = useState(true);
 
-      if (res) {
-        setUser(res);
-        router.push("/profile");
-      } else {
-        setError("Invalid email or password");
+  const togglePassword = () => setIsPassword(!isPassword);
+  const setUser = useAuthStore((state) => state.setUser);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<RegistrationFormData>({
+    resolver: yupResolver(registrationSchema),
+  });
+  const onSubmit = async (data: RegistrationFormData) => {
+    try {
+      const user = await registerUser({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phone: data.phone,
+      });
+
+      if (user) {
+        setUser(user);
       }
-    } catch (error) {
-      setError(
-        (error as ApiError).response?.data?.error ??
-          (error as ApiError).message ??
-          "Oops... some error"
-      );
+
+      toast(`${user.name} registered successfuly`);
+
+      router.push("/cart");
+    } catch (error: any) {
+      toast(error?.data?.message || "Registration failed");
     }
   };
+  const passwordValue = watch("password");
   return (
     <main className={css.mainContent}>
-      <h1 className={css.formTitle}>Sign up</h1>
-      <form className={css.form} action={handleSubmit}>
-        <div className={css.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            className={css.input}
-            required
-          />
+      <Toaster />
+      <div className={css.container}>
+        <div className={css.logoBox}>
+          <LogoComponent />
+        </div>
+        <Image
+          width={95}
+          height={93}
+          alt="Pill"
+          src="/pill.png"
+          className={css.pill}
+        />
+        <Image
+          width={179}
+          height={175}
+          alt="Pill"
+          src="/pillTab.png"
+          className={css.pillTab}
+        />
+        <div className={css.wrapper}>
+          <h1 className={css.formTitle}>
+            Your medication, delivered Say goodbye to all
+            <span> your healthcare</span> worries with us
+          </h1>
+          <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+            <label className={css.label}>
+              <input
+                placeholder="User Name"
+                {...register("name")}
+                className={`${css.input} ${errors.name ? css.inputError : ""}`}
+              />
+              {errors.name && (
+                <p style={{ color: "#ef2447" }}>{errors.name.message}</p>
+              )}
+            </label>
+            <label className={css.label}>
+              <input
+                placeholder="Email address"
+                {...register("email")}
+                className={`${css.input} ${errors.email ? css.inputError : ""}`}
+              />
+              {errors.email && (
+                <p style={{ color: "#ef2447" }}>{errors.email.message}</p>
+              )}
+            </label>
+            <label className={css.label}>
+              <input
+                placeholder="Phone number"
+                {...register("phone")}
+                className={`${css.input} ${errors.phone ? css.inputError : ""}`}
+              />
+              {errors.phone && (
+                <p style={{ color: "#ef2447" }}>{errors.phone.message}</p>
+              )}
+            </label>
+            <label className={css.label}>
+              <input
+                type={isPassword ? "password" : "text"}
+                placeholder="Password"
+                {...register("password")}
+                className={`${css.input} ${errors.password ? css.inputError : ""}  ${!errors.password && passwordValue?.length >= 7 ? css.inputSuccess : ""}`}
+              />
+              {!isPassword && (
+                <svg
+                  className={css.eye}
+                  width={18}
+                  height={18}
+                  onClick={togglePassword}
+                >
+                  <use href="/symbol-defs.svg#eye-off" />
+                </svg>
+              )}
+              {isPassword && (
+                <svg
+                  className={css.eye}
+                  width={18}
+                  height={18}
+                  onClick={togglePassword}
+                >
+                  <use href="/symbol-defs.svg#eye" />
+                </svg>
+              )}
+              {errors.password && (
+                <p style={{ color: "#ef2447" }}>{errors.password.message}</p>
+              )}
+            </label>
+            <button type="submit" disabled={isSubmitting} className={css.btn}>
+              Register
+            </button>
+          </form>
         </div>
 
-        <div className={css.formGroup}>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            className={css.input}
-            required
-          />
-        </div>
-
-        <div className={css.actions}>
-          <button type="submit" className={css.submitButton}>
-            Register
-          </button>
-        </div>
-
-        {error && <p className={css.error}>{error}</p>}
-      </form>
+        <Link href={"/login"} className={css.link}>
+          Already have an account?
+        </Link>
+      </div>
     </main>
   );
 }

@@ -2,23 +2,77 @@
 
 import { useParams } from "next/navigation";
 import css from "./SingleMedicine.module.css";
-import { useQuery } from "@tanstack/react-query";
-import { getSingleProductClient } from "@/lib/api/clientApi";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  addToCartClient,
+  decreaseCartClient,
+  getCart,
+  getSingleProductClient,
+} from "@/lib/api/clientApi";
 import Container from "@/components/Container/Container";
 import Image from "next/image";
 import { useState } from "react";
+import Modal from "@/components/Modal/Modal";
+import RegisterForm from "@/components/RegisterForm/RegisterForm";
+import { useAuthStore } from "@/lib/store/authStore";
+import { Cart } from "@/types/cart";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function SingleMedicineClient() {
-  const [quantity, setQuantity] = useState(1);
   const [isDescription, setIsDescription] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams<{ id: string }>();
   const { data } = useQuery({
     queryKey: ["product", id],
     queryFn: () => getSingleProductClient(id),
     refetchOnMount: false,
   });
+  const { isAuthenticated } = useAuthStore();
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  const { mutate: addToCart } = useMutation({
+    mutationFn: addToCartClient,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+
+  const { mutate: decreaseCart } = useMutation({
+    mutationFn: decreaseCartClient,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+
+  const { data: cart } = useQuery({
+    queryKey: ["cart"],
+    queryFn: getCart,
+  });
+
+  const handleAddToCart = (item: Cart) => {
+    if (!isAuthenticated) {
+      setIsModalOpen(true);
+      return;
+    }
+    addToCart(item);
+    toast(`${data?.name} successfully added to cart!`);
+    router.push("/medicine");
+  };
+  const handleIncrease = (item: Cart) => {
+    if (!isAuthenticated) {
+      setIsModalOpen(true);
+      return;
+    }
+    addToCart(item);
+  };
+
+  const currentProduct = cart?.items.find(
+    (item) => item.productId._id === data?._id,
+  );
   return (
     <Container>
+      <Toaster />
       {data && (
         <div className={css.box}>
           <div className={css.productWrapper}>
@@ -37,21 +91,54 @@ export default function SingleMedicineClient() {
               <div className={css.containerQuan}>
                 <div className={css.quantityBox}>
                   <button
-                    onClick={() => setQuantity(quantity - 1)}
-                    disabled={quantity === 1}
+                    onClick={() =>
+                      decreaseCart({
+                        productId: data._id,
+                        price: Number(data.price),
+                        photo: data.photo,
+                        quantity: 1,
+                      })
+                    }
+                    disabled={
+                      currentProduct?.quantity === 1 ||
+                      !currentProduct?.quantity
+                    }
                     className={css.btn}
                   >
                     -
                   </button>
-                  <p className={css.quantity}>{quantity}</p>
+                  <p className={css.quantity}>
+                    {currentProduct && currentProduct.quantity
+                      ? currentProduct.quantity
+                      : 1}
+                  </p>
                   <button
-                    onClick={() => setQuantity(quantity + 1)}
+                    onClick={() =>
+                      handleIncrease({
+                        productId: data._id,
+                        price: Number(data.price),
+                        photo: data.photo,
+                        quantity: 1,
+                      })
+                    }
                     className={css.btn}
                   >
                     +
                   </button>
                 </div>
-                <button className={css.button}>Add to cart</button>
+                <button
+                  className={css.button}
+                  onClick={() =>
+                    handleAddToCart({
+                      productId: data._id,
+                      price: Number(data.price),
+                      photo: data.photo,
+                      quantity: 1,
+                    })
+                  }
+                >
+                  Add to cart
+                </button>
               </div>
             </div>
           </div>
@@ -70,6 +157,11 @@ export default function SingleMedicineClient() {
                 Reviews
               </button>
             </div>
+            {isModalOpen && (
+              <Modal onClose={() => setIsModalOpen(false)}>
+                <RegisterForm onClose={() => setIsModalOpen(false)} />
+              </Modal>
+            )}
             {isDescription && (
               <div className={css.textBox}>
                 <p className={css.subText}>
