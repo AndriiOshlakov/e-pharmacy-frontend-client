@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const baseURL =
-  (process.env.NEXT_PUBLIC_API_URL ||
-    "https://e-pharmacy-backend-ng6r.onrender.com") + "/api";
+const baseURL = process.env.NEXT_PUBLIC_API_URL + "/api";
 export const nextServer = axios.create({
   baseURL,
   withCredentials: true,

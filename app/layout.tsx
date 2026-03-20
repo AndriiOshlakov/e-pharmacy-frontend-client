@@ -17,19 +17,20 @@ export const metadata: Metadata = {
   title: "Welcome to E-Pharmacy",
   description:
     "E-Pharmacy is a simple and efficient application designed for booking necessary medication.",
+  icons: { icon: "/pill.png" },
   openGraph: {
     title: "Welcome to E-Pharmacy ",
     description:
       "E-Pharmacy is a simple and efficient application designed for booking necessary medication.",
     images: [
       {
-        url: "https://08-zustand-phi-bice.vercel.app/",
+        url: "e-pharmacy-frontend-client-p1f4.vercel.app",
         width: 1200,
         height: 630,
         alt: "Welcome to E-Pharmacy",
       },
     ],
-    url: "https://08-zustand-phi-bice.vercel.app/",
+    url: "e-pharmacy-frontend-client-p1f4.vercel.app",
   },
 };
 
