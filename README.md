@@ -1,151 +1,314 @@
-# 💊 E-Pharmacy (Online Medicine Store)
+# 💊 E-Pharmacy (Frontend)
 
-## 📌 About the Project
+## 📌 Загальна інформація
 
-E-Pharmacy is a full-stack web application that allows users to browse medicines, view pharmacies, add products to a cart, and place orders.
+**Назва проекту:** E-Pharmacy (client)  
+**Мета проекту:** Розробка веб-платформи для онлайн-замовлення медикаментів
 
-The platform supports authentication, product filtering, pagination, and a complete checkout flow.
-
----
-
-## 🚀 Features
-
-### 🏪 Medicine Store Page (`/medicine-store`) — Public
-
-- Displays a list of pharmacies
-- Each store card includes:
-  - Store name
-  - Address (street + city)
-  - Phone number
-  - Status (OPEN / CLOSE)
-  - Rating (stars)
-  - "Visit Store" button → redirects to store page
+E-Pharmacy — це сучасний веб-додаток, який дозволяє користувачам знаходити ліки, переглядати аптеки, додавати товари в кошик та оформлювати замовлення.
 
 ---
 
-### 💊 Medicine Page (`/medicine`) — Private
+## 🎨 UI / UX Вимоги
 
-- Product catalog with:
-  - Image
-  - Name
-  - Price
-- Search & Filter:
-  - Category dropdown
-  - Search input
-  - Filter button
-- Backend-driven:
-  - Filtering
-  - Pagination
-- UI states:
-  - "Nothing was found for your request"
-- Actions:
-  - Add to cart (with auth check)
-  - Open product details
+- 📱 Mobile: від 320px (гумова), адаптив з 375px
+- 📲 Tablet: від 768px
+- 💻 Desktop: від 1440px
+
+### ✔ Основні вимоги:
+
+- Валідна верстка
+- Retina підтримка
+- Оптимізація зображень
+- SVG sprite для іконок
+- Підключення кастомних шрифтів
+- Favicon
 
 ---
 
-### 📦 Product Page (`/product`) — Public
+## 🧰 Використані технології
 
-- Product overview:
-  - Image
-  - Name
-  - Brand
-  - Price
-  - Rating
-- Quantity selector + Add to cart
-- Tabs:
-  - Description
-  - Reviews
-- Reviews include:
-  - User name
-  - Date
-  - Comment
-  - Rating
-- Pagination for reviews
+### Frontend:
+
+- Next.js (App Router)
+- React
+- TypeScript
+- TanStack Query (React Query)
+- Zustand
+- Axios
+- CSS Modules
+
+### Додаткові бібліотеки:
+
+- React Hook Form → форми та валідація
+- React Ellipsis Text → обрізка тексту
+- MUI / Blueprint → UI компоненти
 
 ---
 
-### 🛒 Cart Page (`/cart`) — Private
+## 🧱 Архітектура
 
-- Shipping form:
-  - Name
-  - Email
-  - Phone
-  - Address
-- Payment methods:
-  - Cash On Delivery
-  - Bank
-- Cart items:
-  - Product name
-  - Price
-  - Quantity controls
-  - Remove button
-- Order summary:
-  - Total price
-- "Place order" button → sends request to backend
+### 🔹 SharedLayout (`/`)
+
+Містить:
+
+- Header
+- Footer
+- Обгортка для всіх сторінок
+
+---
+
+## 🔝 Header
+
+- Logo → переходить на Home
+- Navigation:
+  - Home
+  - Medicine store
+  - Medicine
+- Auth:
+  - Register
+  - Login
+
+---
+
+## 🔻 Footer
+
+- Logo
+- Текст:
+
+  > "Get the medicine to help you feel better..."
+
+- Social links:
+  - Facebook
+  - Instagram
+  - YouTube
+
+- Navigation:
+  - Home
+  - Medicine store
+  - Medicine
+
+- Bottom:
+  - © E-Pharmacy 2023
+  - Privacy Policy
+  - Terms & Conditions
+
+---
+
+# 👤 НЕАВТОРИЗОВАНИЙ КОРИСТУВАЧ
+
+---
+
+## 📝 Register Page (`/register`)
+
+- Форма:
+  - name
+  - email
+  - phone
+  - password
+- Валідація
+- Toast помилки
+- Після:
+  - ✔ авто-логін
+  - ✔ redirect
+
+---
+
+## 🔐 Login Page (`/login`)
+
+- Форма:
+  - email
+  - password
+- Валідація
+- Toast помилки
+- Після:
+  - ✔ redirect на Home
+
+---
+
+## 🏠 Home Page (`/home`)
+
+### 🔹 Main Banner
+
+- "Your medication delivered"
+
+---
+
+### 🔹 Promo Banners
+
+- Huge Sale (70%)
+- Secure Delivery (100%)
+- Off (35%)
+
+---
+
+### 🔹 Medicine Stores (6 random)
+
+- Назва
+- Адреса
+- Телефон
+- Статус (OPEN/CLOSE)
+
+➡️ click → Shop Page
+
+---
+
+### 🔹 Add Pharmacy Section
+
+- CTA: "Buy medicine"
+- Redirect → `/medicine-store`
+
+---
+
+### 🔹 Reviews
+
+- Avatar
+- Name
+- Comment
+
+📡 Дані з backend
+
+---
+
+# 🏪 Medicine Store Page (`/medicine-store`) — Public
+
+- Список аптек:
+  - Назва
+  - Адреса
+  - Телефон
+  - Статус
+  - Рейтинг ⭐
+  - "Visit Store"
+
+📡 Дані з backend
+
+---
+
+# 💊 Medicine Page (`/medicine`) — Private
+
+### 🔍 Фільтрація:
+
+- Category
+- Search input
+- Filter button
+
+### 📦 Продукти:
+
+- Image
+- Name
+- Price
+
+### ➕ Дії:
+
+- Add to cart
+- Details
+
+### 📄 Пагінація:
+
+- Backend-driven
+
+### ❌ Empty state:
+
+> "Nothing was found for your request"
+
+---
+
+# 📦 Product Page (`/product`)
+
+### 🔹 Overview:
+
+- Image
+- Name
+- Brand
+- Price
+- Rating
+
+### 🔹 Actions:
+
+- Change quantity
+- Add to cart
+
+---
+
+### 🔹 Tabs:
+
+- Description
+- Reviews
+
+---
+
+### 🔹 Reviews:
+
+- Name
+- Date
+- Comment
+- Rating ⭐
+
+---
+
+# 🛒 Cart Page (`/cart`) — Private
+
+### 🧾 Shipping Form:
+
+- Name
+- Email
+- Phone
+- Address
+
+---
+
+### 💳 Payment:
+
+- Cash
+- Bank
+
+---
+
+### 📦 Cart Items:
+
+- Product name
+- Price
+- Quantity
+- Remove
+
+---
+
+### 💰 Summary:
+
+- Total price
+
+---
+
+### 🚀 Place Order:
+
+- POST → backend
 
 ---
 
 ## 🔐 Authentication
 
-- Registration & Login
-- Session-based authentication:
-  - Access Token (15 min)
-  - Refresh Token (1 day)
-- Automatic token refresh
-- Protected routes:
-  - `/medicine`
-  - `/cart`
+- Cookie-based auth
+- Access Token (15 min)
+- Refresh Token (1 day)
+- Auto refresh через interceptor
 
 ---
 
-## 🧠 Tech Stack
+## 🔄 API
 
-### Frontend
-
-- Next.js (App Router)
-- React
-- TypeScript
-- React Query (TanStack Query)
-- Zustand (state management)
-- Axios
-- CSS Modules
-
-### Backend
-
-- Node.js
-- Express
-- MongoDB + Mongoose
-- JWT-like session system (custom tokens)
-- Cookie-based authentication
-
----
-
-## 🔄 API Features
-
-- Authentication:
-  - Register / Login / Logout
-  - Session refresh
+- Auth:
+  - register / login / logout
 - Products:
-  - Pagination
-  - Filtering
-  - Search
+  - search / filter / pagination
 - Cart:
-  - Add / Remove / Update quantity
+  - add / remove / update
 - Orders:
-  - Checkout flow
+  - checkout
 
 ---
 
-## 📦 Installation
+## ⚙️ ENV
 
-```bash
-# Clone repo
-git clone <repo-url>
-
-# Install dependencies
-npm install
-
-# Run frontend
-npm run dev
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
