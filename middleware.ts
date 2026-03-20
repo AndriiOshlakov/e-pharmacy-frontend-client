@@ -64,7 +64,7 @@ export async function middleware(request: NextRequest) {
     }
 
     if (isPrivateRoute) {
-      return NextResponse.redirect(new URL("/login", request.url));
+      return NextResponse.redirect(new URL("/cart", request.url));
     }
   }
 

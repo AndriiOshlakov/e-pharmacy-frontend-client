@@ -5,15 +5,12 @@ import css from "./Filters.module.css";
 import { useState } from "react";
 
 interface FilersProps {
-  //   search?: string;
-  //   category?: string;
   onSearch: (newSearch: string) => void;
   onCtegoryChange: (newCategory: Category) => void;
   onPage: (newPage: number) => void;
 }
 
 export default function Filters({
-  //   search,
   onPage,
   onSearch,
   onCtegoryChange,
