@@ -48,29 +48,51 @@ export default function Cart() {
     },
   });
 
-  const { data } = useQuery({
+  const { data: list } = useQuery({
     queryKey: ["cart"],
     queryFn: getCart,
   });
 
   const total =
-    data?.items?.reduce((sum, item) => sum + item.price * item.quantity, 0) ||
+    list?.items?.reduce((sum, item) => sum + item.price * item.quantity, 0) ||
     0;
 
   const { mutate: createOrder, isPending } = useMutation({
     mutationFn: setOrder,
     onSuccess: () => {
-      toast.success("Your order successfully done!");
+      toast.success(
+        "Ви вдало зробили замовлення. Наші менеджери скоро з вами зв`яжуться.",
+      );
 
       // очистити кошик після замовлення
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
     onError: (error: AxiosError<{ message: string }>) => {
-      toast.error(error.response?.data?.message || "Error");
+      toast.error(
+        error.response?.data?.message || "❌ Всі поля мають бути заповнені.",
+      );
     },
   });
 
   const handleSubmit = (data: Order) => {
+    if (list?.items.length === 0) {
+      return toast("Щоб зробити замовдення оберіть товар.");
+    }
+    if (data.address === "") {
+      return toast.error("Щоб зробити замовдення вкакжіть адресу.");
+    }
+    if (data.email === "") {
+      return toast.error("Щоб зробити замовдення вкажіть електронну пошту.");
+    }
+    if (data.phone === "") {
+      return toast.error("Щоб зробити замовдення вкажіть номер телефону.");
+    }
+    if (!data.phone.startsWith("+380")) {
+      return toast.error("Телефон має починатись з +380...");
+    }
+    if (data.userName === "") {
+      return toast.error("Щоб зробити замовдення вкажіть ім`я.");
+    }
     createOrder(data);
   };
 
@@ -210,7 +232,7 @@ export default function Cart() {
             </form>
           </div>
           <ul className={css.list}>
-            {data?.items.map((item) => (
+            {list?.items.map((item) => (
               <li key={item.productId._id} className={css.listItem}>
                 <Image
                   alt="Product image"

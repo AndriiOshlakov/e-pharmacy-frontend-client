@@ -56,7 +56,7 @@ export default function SignIn() {
         setUser(user);
       }
 
-      toast(`${user.name} registered successfuly`);
+      toast(`${user.name} logined successfuly`);
 
       router.push("/cart");
     } catch (error) {
